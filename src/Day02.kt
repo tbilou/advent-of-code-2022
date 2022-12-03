@@ -30,13 +30,11 @@ fun main() {
     }
 
     fun part1(input: List<String>): Int {
-        // try sumby
-        return input.fold(0) { acc, it -> acc + score(it) }
+        return input.sumOf { score(it) }
     }
 
-
     fun part2(input: List<String>): Int {
-        return input.fold(0) { acc, it -> acc + score2(it) }
+        return input.sumOf { score2(it) }
     }
 
     // test if implementation meets criteria from the description, like:
