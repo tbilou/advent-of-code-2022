@@ -9,7 +9,7 @@ Day | success?       | Notes
 01  | [✓][day01]  | [Elves calorie counting][aoc01]. I reached the solution using a simple for loop. Later on I introduced an extension function to split a list into a list of lists.
 02  | [✓][day02]  | [Rock paper scissors scoring][aoc02]. Tried to use enums and data classes but gave up and ended up hard-coding 2 truth tables 
 03  | [✓][day03]  | [Rucksack Reorganization][aoc03]. The `intersect` function saved the day ;) 
-04  |             |
+04  | [✓][day04]  | [Camp Cleanup][aoc04]. The plan was to subtract the smallest "range" from the larger one and check how many items were left. If there was nothing left, then it was fully contained. For the second part I joined both lists and compared the size with a set of the same lists. 
 05  |             |
 06  |             |
 07  |             |
@@ -60,6 +60,7 @@ Day | success?       | Notes
 [day01]: src/Day01.kt
 [day02]: src/Day02.kt
 [day03]: src/Day03.kt
+[day04]: src/Day04.kt
 
 
 
