@@ -1,29 +1,24 @@
 fun main() {
-    fun parseInput(input: List<String>) = input.map { p -> p.split(',') }
-        .map { l1 ->
-            l1.map { e -> e.split('-').toRange() }
-                .sortedBy { it.size }
-                .windowed(2, 2) { it[0].subtract(it[1]).size }
-        }
-
-    fun part1(input: List<String>): Int {
 
 //        "2-4,6-8"
 //        [[2-4],[6-8]]
 //        [[2,3,4],[6,7,8]]
 
+    fun parseInput(input: List<String>) = input
+        .map { p -> p.split(',') }
+        .map { (r1, r2) -> listOf(r1.toRange(), r2.toRange()).sortedBy { it.size } }
+
+    fun part1(input: List<String>): Int {
         return parseInput(input)
-            .count { it.first() == 0 }
+            .map { (l1, l2) -> l1.subtract(l2).size }
+            .count { i -> i == 0 }
     }
 
 
     fun part2(input: List<String>): Int {
-        return input.map { p -> p.split(',') }
-            .map { l1 ->
-                l1.map { e -> e.split('-').toRange() }
-                    .windowed(2, 2) { it[0].plus(it[1]).size - it[0].plus(it[1]).toSet().size }
-            }
-            .count { it.first() > 0 }
+        return parseInput(input)
+            .map { (l1, l2) -> (l1+l2).size - (l1+l2).toSet().size}
+            .count { it > 0 }
     }
 
     // test if implementation meets criteria from the description, like:
@@ -37,6 +32,10 @@ fun main() {
     val input = readInput("Day04")
     println(part1(input))
     println(part2(input))
+}
+
+private fun String.toRange(): List<Int> {
+    return this.split('-').toRange()
 }
 
 private fun List<String>.toRange(): List<Int> {
