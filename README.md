@@ -10,7 +10,7 @@ Day | success?       | Notes
 02  | [✓][day02]  | [Rock paper scissors scoring][aoc02]. Tried to use enums and data classes but gave up and ended up hard-coding 2 truth tables 
 03  | [✓][day03]  | [Rucksack Reorganization][aoc03]. The `intersect` function saved the day ;) 
 04  | [✓][day04]  | [Camp Cleanup][aoc04]. The plan was to subtract the smallest "range" from the larger one and check how many items were left. If there was nothing left, then it was fully contained. For the second part I joined both lists and compared the size with a set of the same lists. 
-05  |             |
+05  | [✓][day04]  | [Supply Stacks][aoc05]. First idea was to parse the input into a list of stacks and use pop() and push() to move elements around. The hardest part was parting the input. I split the input by `\n\n` to have the initial stacks as one thing and the operations as another. For the stacks I ended up reversing the list and starting with the numbers to know how many stacks I would need to build.
 06  |             |
 07  |             |
 08  |             |
@@ -61,6 +61,7 @@ Day | success?       | Notes
 [day02]: src/Day02.kt
 [day03]: src/Day03.kt
 [day04]: src/Day04.kt
+[day05]: src/Day05.kt
 
 
 
