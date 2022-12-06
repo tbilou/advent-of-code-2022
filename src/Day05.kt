@@ -41,28 +41,35 @@ private fun <String> ArrayDeque<String>.removeN(amount: Int): List<String> {
     return tmp.reversed()
 }
 
-fun parseInput(input: String): Input {
+
+//   "[Z] [M] [P]" -> [Z, M, P]
+
+fun parseInput(input: String): StacksAndOperations {
     val stacks = mutableListOf<ArrayDeque<String>>()
     val list = input.split("\n\n")
+
+    // Initial Stacks configuration
     list.first().split('\n')
         .reversed()
         .also {
+            // Build the list of stacks.
             val numColumns: Int = it.first().trim().last().digitToInt()
             for (i in 1..numColumns) {
                 stacks.add(ArrayDeque(0))
             }
         }
-        .let { it.subList(1, it.size) }
+        .drop(1)
         .map { s ->
             s.chunked(4)
                 .map { it.filter { it in 'A'..'Z' } }
                 .mapIndexed { i, e -> if (e.isNotEmpty()) stacks[i].add(e) }
         }
 
+    // List of operations
     val operations = list.last().split('\n')
         .map { line -> parseOperation(line) }
 
-    return Input(stacks, operations)
+    return StacksAndOperations(stacks, operations)
 }
 
 private fun parseOperation(line: String): Operation {
@@ -75,4 +82,4 @@ private fun parseOperation(line: String): Operation {
 }
 
 data class Operation(val amount: Int, val from: Int, val to: Int)
-data class Input(val stacks: List<ArrayDeque<String>>, val instuctions: List<Operation>)
+data class StacksAndOperations(val stacks: List<ArrayDeque<String>>, val instuctions: List<Operation>)
