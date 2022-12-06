@@ -2,32 +2,23 @@ fun main() {
 
     val day = "Day06"
 
-    fun hasNoDuplicates(s: String) = s.toList().groupingBy { it }.eachCount().filter { it.value > 1 }.isEmpty()
+    fun hasNoDuplicates(s: String) = s.toList().size == s.toSet().size
 
-    fun part1(input: String): Int {
-        var answer = 0
-        val l = input.windowed(4)
-
-        for (i in 1..l.size){
+    fun detectStartOfPacketMarker(l: List<String>, windowSize: Int): Int {
+        for (i in 1..l.size) {
             if (hasNoDuplicates(l[i])) {
-                answer = i + 4
-                break
+                return i + windowSize
             }
         }
-        return answer
+        return -1
+    }
+
+    fun part1(input: String): Int {
+        return detectStartOfPacketMarker(input.windowed(4), 4)
     }
 
     fun part2(input: String): Int {
-        var answer = 0
-        val l = input.windowed(14)
-
-        for (i in 1..l.size){
-            if (hasNoDuplicates(l[i])) {
-                answer = i + 14
-                break
-            }
-        }
-        return answer
+        return detectStartOfPacketMarker(input.windowed(14), 14)
     }
 
 
