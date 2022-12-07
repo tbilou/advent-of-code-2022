@@ -14,9 +14,10 @@ fun main() {
                     line.equals("\$ cd ..") -> node = node.parent!!
                     changeDir.matches(line) -> {
                         val (newDir) = changeDir.find(line)!!.destructured
-                        node = node.children.find { it.directoryName.equals(newDir) }!!
+                        val newNode = FSTree(newDir)
+                        node.addChild(newNode)
+                        node = newNode
                     }
-                    line.startsWith("dir") -> node.addChild(FSTree(line.substringAfter(" ")))
                     line[0].isDigit() -> node.size += line.substringBefore(" ").toInt()
                 }
             }
@@ -34,9 +35,7 @@ fun main() {
 
         val results = mutableListOf<Int>()
         getSizes(fsTree, results)
-        val filtered = results.filter { it > 30000000 - (70000000 - results.max()) }.min()
-
-        return filtered
+        return results.filter { it > 30000000 - (70000000 - results.max()) }.min()
     }
 
 
