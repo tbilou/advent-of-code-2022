@@ -4,25 +4,25 @@ fun main() {
 
     fun part1(input: List<String>): Int {
         var visible = 0
-        var l = input.map { it -> it.toList().map { it.digitToInt() } }
+        var forest = input.map { it -> it.toList().map { it.digitToInt() } }
 
         // Skip the edges
-        for (i in 1..l.size - 2) {
-            for (j in 1..l.size - 2) {
-                var row = l[i]
-                var column = getCol(j, l)
+        for (i in 1..forest.size - 2) {
+            for (j in 1..forest.size - 2) {
+                var horizontal = forest[i]
+                var vertical = getCol(j, forest)
 
-                val treesLeft = row.subList(1, j)
-                val treesRight = row.subList(j + 1, row.size - 1)
-                val treesLeftUp = column.subList(1, i)
-                val treesRightDown = column.subList(i + 1, column.size - 1)
+                val treesLeft = horizontal.subList(1, j)
+                val treesRight = horizontal.subList(j + 1, horizontal.size - 1)
+                val treesLeftUp = vertical.subList(1, i)
+                val treesRightDown = vertical.subList(i + 1, vertical.size - 1)
 
-                val edgeLeft = row[0]
-                val edgeRight = row[row.size - 1]
-                val edgeUp = column[0]
-                val edgeDown = column[row.size - 1]
+                val edgeLeft = horizontal[0]
+                val edgeRight = horizontal[horizontal.size - 1]
+                val edgeUp = vertical[0]
+                val edgeDown = vertical[horizontal.size - 1]
 
-                val tree = row[j]
+                val tree = horizontal[j]
 
                 val visibleLeft = isTreeVisible(edgeLeft, treesLeft, tree)
                 val visibleRight = isTreeVisible(edgeRight, treesRight, tree)
@@ -35,20 +35,20 @@ fun main() {
             }
         }
 //        println("visible trees found: $visible")
-        val result = visible + l.size * 4 - 4
+        val result = visible + forest.size * 4 - 4
 //        println("visible trees + perimeter : $result")
         return result
     }
 
     fun part2(input: List<String>): Int {
         var maxScore = 0
-        var l = input.map { it -> it.toList().map { it.digitToInt() } }
+        var forest = input.map { it -> it.toList().map { it.digitToInt() } }
 
         // Iterate over all the items
-        for (i in l.indices) {
-            for (j in l.indices) {
-                var row = l[i]
-                var column = getCol(j, l)
+        for (i in forest.indices) {
+            for (j in forest.indices) {
+                var row = forest[i]
+                var column = getCol(j, forest)
 
                 val treesLeft = row.subList(0, j)
                 val treesRight = row.subList(j + 1, row.size)
