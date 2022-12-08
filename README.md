@@ -12,8 +12,8 @@ Day | success?       | Notes
 04  | [✓][day04]  | [Camp Cleanup][aoc04]. The plan was to subtract the smallest "range" from the larger one and check how many items were left. If there was nothing left, then it was fully contained. For the second part I joined both lists and compared the size with a set of the same lists. 
 05  | [✓][day05]  | [Supply Stacks][aoc05]. First idea was to parse the input into a list of stacks and use pop() and push() to move elements around. The hardest part was parting the input. I split the input by `\n\n` to have the initial stacks as one thing and the operations as another. For the stacks I ended up reversing the list and starting with the numbers to know how many stacks I would need to build.
 06  | [✓][day06]  | [Tuning Trouble][aoc06]. Windowed for the rescue :) I ended up googling for a way find duplicates in a string and I had already done it in day #5 :facepalm:
-07  |             |
-08  |             |
+07  | [✓][day07]  | [No Space Left On Device][aoc07]. My first idea was to replicate the commands in the actual filesystem of my computer (my creating the directories and files with the correct sizes) and use linux commands to calculate the problem :) Ended up implementing a tree of directories. After seeing a comment on the jet brains slack I implemented another version without a tree
+08  | [✓][day08]  | [Treetop Tree House][aoc08] This one kicked my ass. I thought it was really clever to rotate the matrix and then check left right first and up down afterwards (by marking the visible trees with -1). At some point gave up and started again, but still with the idea to use the rotated matrix. After failing 2x I finally decided to implement the algorithm verbatim and it worked 
 09  |             |
 10  |             |
 11  |             |
@@ -63,6 +63,8 @@ Day | success?       | Notes
 [day04]: src/Day04.kt
 [day05]: src/Day05.kt
 [day06]: src/Day06.kt
+[day07]: src/Day07.kt
+[day08]: src/Day08.kt
 
 
 
