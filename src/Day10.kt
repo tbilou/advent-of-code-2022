@@ -24,7 +24,7 @@ fun main() {
         var pixel = 1
         var sprite = 0
 
-        var lcd = List(6) { mutableListOf("") }.map { list ->
+        var tv = List(6) { mutableListOf("") }.map { list ->
             repeat(39) { list.add("") }
             list
         }
@@ -32,14 +32,14 @@ fun main() {
         while (cycle < 240) {
             cycle++
             val visible = sprite.visible(pixel)
-            lcd.draw(pixel, visible)
+            tv.draw(pixel, visible)
 
             sim.simulateStep()
 
             pixel += 1
             sprite = sim.register
         }
-        lcd.display()
+        tv.display()
     }
 
 // test if implementation meets criteria from the description, like:
