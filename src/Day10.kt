@@ -2,90 +2,51 @@ fun main() {
 
     val day = "Day10"
 
-    fun expandInstructions(input: List<String>): MutableList<String> {
-        var newInstructions = mutableListOf<String>()
-
-        input.forEach { instruction ->
-            if (instruction == "noop") {
-                newInstructions.add(instruction)
-            } else {
-                newInstructions.add("noop")
-                newInstructions.add(instruction)
-            }
-        }
-        return newInstructions
-    }
-
     fun part1(input: List<String>): Int {
-        var newInstructions = expandInstructions(input)
+        val sim = Simulator(input)
 
-        var register = 1
         var cycle = 0
-        var pointer = 0
-
         var total = 0
 
         while (cycle < 240) {
             cycle++
-
-            // Before current instruction ends
             if (cycle in listOf(20, 60, 100, 140, 180, 220)) {
-                total += cycle * register
+                total += cycle * sim.register
             }
-
-            // end instruction
-            val i = newInstructions[pointer]
-            if (i != "noop") {
-                val v = i.substringAfter(" ").toInt()
-                register += v
-            }
-            pointer++
+            sim.simulateStep()
         }
         return total
     }
 
-    fun part2(input: List<String>): Int {
-        var newInstructions = expandInstructions(input)
-
-        var register = 1
+    fun part2(input: List<String>) {
+        val sim = Simulator(input)
         var cycle = 0
-        var pointer = 0
-
         var pixel = 1
         var sprite = 0
 
-        var tv = List(6) { mutableListOf("") }.map { list ->
+        var lcd = List(6) { mutableListOf("") }.map { list ->
             repeat(39) { list.add("") }
             list
         }
 
         while (cycle < 240) {
             cycle++
-
-            // Draw Pixels
             val visible = sprite.visible(pixel)
-            tv.draw(pixel, visible)
+            lcd.draw(pixel, visible)
 
-            val i = newInstructions.get(pointer)
-            if (i != "noop") {
-                val v = i.substringAfter(" ").toInt()
-                register += v
-            }
+            sim.simulateStep()
 
-            pointer++
             pixel += 1
-            sprite = register
+            sprite = sim.register
         }
-        tv.display()
-        return 0
+        lcd.display()
     }
 
 // test if implementation meets criteria from the description, like:
     val testInput = readInput("${day}_test")
 
     check(part1(testInput) == 13140)
-    check(part2(testInput) == 0)
-
+//    check(part2(testInput) == 0)
 
     val input = readInput("$day")
 
@@ -112,4 +73,35 @@ private fun List<MutableList<String>>.draw(pixel: Int, visible: Boolean) {
 private fun Int.visible(pixel: Int): Boolean {
     var p = (pixel - 1) % 40
     return (this == p || this - 1 == p || this + 1 == p)
+}
+
+private class Simulator(input: List<String>){
+    var instructions = expandInstructions(input)
+    var register = 1
+    var pointer = 0
+
+    fun simulateStep(): Int {
+        val i = instructions[pointer]
+
+        if (i != "noop") {
+            val v = i.substringAfter(" ").toInt()
+            register += v
+        }
+        pointer++
+        return register
+    }
+
+    fun expandInstructions(input: List<String>): MutableList<String> {
+        var newInstructions = mutableListOf<String>()
+
+        input.forEach { instruction ->
+            if (instruction == "noop") {
+                newInstructions.add(instruction)
+            } else {
+                newInstructions.add("noop")
+                newInstructions.add(instruction)
+            }
+        }
+        return newInstructions
+    }
 }
