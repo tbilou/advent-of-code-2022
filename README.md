@@ -15,7 +15,7 @@ Day | success?       | Notes
 07  | [✓][day07]  | [No Space Left On Device][aoc07]. My first idea was to replicate the commands in the actual filesystem of my computer (my creating the directories and files with the correct sizes) and use linux commands to calculate the problem :) Ended up implementing a tree of directories. After seeing a comment on the jet brains slack I implemented another version without a tree
 08  | [✓][day08]  | [Treetop Tree House][aoc08] This one kicked my ass. I thought it was really clever to rotate the matrix and then check left right first and up down afterwards (by marking the visible trees with -1). At some point gave up and started again, but still with the idea to use the rotated matrix. After failing 2x I finally decided to implement the algorithm verbatim and it worked 
 09  | [✓][day09]  | [Rope Bridge][aoc09] Took me forever to get my math right... I did the clever thing again for part1, where I just moved the tail to the last place where the head was. I started doing the same for the second part, not realizing that the tail doesn't move like [snake][wikipedia.snake] but there are rules and it moves diagonally. Again instead of just implementing the rules, I wanted to use vectors with magnitude and direction to calculate things. Big mistake
-10  |             |
+10  | [✓][day10]  | [Cathode-Ray Tube][aoc10] A fun one that didn't kick my ass for a change :) I did a clever thing again and converted every [addx] operation into a [noop,addx] to have a simpler simulation. I love that you have to parse the solution with your eyes (like https://adventofcode.com/2021/day/13)
 11  |             |
 12  |             |
 13  |             |
@@ -66,6 +66,7 @@ Day | success?       | Notes
 [day07]: src/Day07.kt
 [day08]: src/Day08.kt
 [day09]: src/Day09.kt
+[day10]: src/Day10.kt
 
 
 
