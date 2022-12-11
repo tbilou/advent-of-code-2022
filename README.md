@@ -16,7 +16,7 @@ Day | success?       | Notes
 08  | [✓][day08]  | [Treetop Tree House][aoc08] This one kicked my ass. I thought it was really clever to rotate the matrix and then check left right first and up down afterwards (by marking the visible trees with -1). At some point gave up and started again, but still with the idea to use the rotated matrix. After failing 2x I finally decided to implement the algorithm verbatim and it worked 
 09  | [✓][day09]  | [Rope Bridge][aoc09] Took me forever to get my math right... I did the clever thing again for part1, where I just moved the tail to the last place where the head was. I started doing the same for the second part, not realizing that the tail doesn't move like [snake][wikipedia.snake] but there are rules and it moves diagonally. Again instead of just implementing the rules, I wanted to use vectors with magnitude and direction to calculate things. Big mistake
 10  | [✓][day10]  | [Cathode-Ray Tube][aoc10] A fun one that didn't kick my ass for a change :) I did a clever thing again and converted every [addx] operation into a [noop,addx] to have a simpler simulation. I love that you have to parse the solution with your eyes (like https://adventofcode.com/2021/day/13)
-11  |             |
+11  | [✓][day11]  | [Monkey in the Middle][aco11] Pulled a Hannes and hardcoded the input. Spent some time trying to store the lambda for the operation in a variable. Again had the solution working for the example but failing for the real input. It took me some time to figure out Int was not big enough :facepalm: For the second part, tried for 1h looking at the example and checking what changed, but I was just guessing at that point. Checked subreddit for help and saw the modulo trick.
 12  |             |
 13  |             |
 14  |             |
@@ -67,6 +67,7 @@ Day | success?       | Notes
 [day08]: src/Day08.kt
 [day09]: src/Day09.kt
 [day10]: src/Day10.kt
+[day11]: src/Day11.kt
 
 
 

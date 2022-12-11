@@ -114,7 +114,13 @@ fun main() {
     }
 
     fun part2(input: List<Monkey>): Long {
+//        MrSimbax in the subreddit:
+//        Part 2 is basically part 1 but operations are done modulo N, where N is the product of all numbers from the input divisibility rules.
+//        This works because if N = n * m then a % n == x implies (a % N) % n == x.
+//        For completeness, this also holds for N = lcm(n, m), which may be smaller than n * m if the divisors are composite.
+//        In the puzzle all divisors are primes though so lcm(n, m) == n * m.
         val magicNumber = input.map { it.divisibleBy }.reduce(Int::times)
+
         var rounds = 10_000
         repeat(rounds) {
             input.forEach { monkey ->
