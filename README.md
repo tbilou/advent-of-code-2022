@@ -18,8 +18,8 @@ Day | success?       | Notes
 10  | [✓][day10]  | [Cathode-Ray Tube][aoc10] A fun one that didn't kick my ass for a change :) I did a clever thing again and converted every [addx] operation into a [noop,addx] to have a simpler simulation. I love that you have to parse the solution with your eyes (like https://adventofcode.com/2021/day/13)
 11  | [✓][day11]  | [Monkey in the Middle][aco11] Pulled a Hannes and hardcoded the input. Spent some time trying to store the lambda for the operation in a variable. Again had the solution working for the example but failing for the real input. It took me some time to figure out Int was not big enough :facepalm: For the second part, tried for 1h looking at the example and checking what changed, but I was just guessing at that point. Checked subreddit for help and saw the modulo trick.
 12  | [✓][day12]  | [Hill Climbing Algorithm][aoc12] Fortunately I had an implementation of A* from last year. Unfortunately it was not a plug-n-play implementation. I had to go back to [wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode) and go through the pseudo-code again. 
-13  |             |
-14  |             |
+13  |             | I needed a break
+14  | [✓][day14]  | [Regolith Reservoir][aoc14] First idea was to expand the input into a list of coordinates to build the cave layout. Used a simple approach where each step was calculating the next position.
 15  |             |
 16  |             |
 17  |             |
@@ -69,6 +69,7 @@ Day | success?       | Notes
 [day10]: src/Day10.kt
 [day11]: src/Day11.kt
 [day12]: src/Day12.kt
+[day14]: src/Day14.kt
 
 
 
